@@ -1,5 +1,4 @@
-# louis.view-in-cabinet.github.io
-Louis Ong Cabinet Designer Website
+# Louis Ong Website — GitHub Pages starter
 
 This is a reconstructed static website based on the publicly viewable pages at the supplied ChatGPT Site URL. It is **not** the original server source code.
 
@@ -27,3 +26,9 @@ Internal HTML links and local CSS/JS paths are prefixed with `/louis.view-in-cab
 2. In repository Settings → Pages, publish from the branch and folder where these files are stored (commonly `main` / `/(root)`).
 3. Wait for the Pages deployment action to complete, then refresh the site.
 4. Check CSS, navigation links, and all pages on mobile and desktop.
+## Typography update
+
+The stylesheet now uses Cormorant Garamond for editorial headings, Manrope for English UI/body text, and Noto Sans SC / Noto Serif SC for Chinese text. These web fonts load from Google Fonts when visitors have internet access; system fallbacks remain defined.
+## Visual alignment update
+
+This build refines the bilingual editorial typography and layout to more closely follow the published ChatGPT reference site: Cormorant Garamond headings, Manrope interface/body text, Noto Sans SC and Noto Serif SC for Chinese, a taller desktop hero image, consistent reference-card image ratios, and adjusted letter spacing and whitespace. Google Fonts require an internet connection; system fallbacks are included.
