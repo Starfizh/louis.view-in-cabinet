@@ -335,3 +335,121 @@ html[lang^="zh"] .editorial .content h2 { letter-spacing: -.02em; }
   .editorial .page-hero h1 { font-size: clamp(2.9rem, 12vw, 4.2rem); }
   .editorial .card-body { padding: 16px 16px 20px; }
 }
+
+/* Unified reference-inspired typography for every English and Chinese page */
+.editorial {
+  --type-body: 15.5px;
+  --type-small: 12px;
+  --type-nav: 13px;
+  --type-label: 10.5px;
+  --type-h2: clamp(39px, 4.6vw, 66px);
+  --type-page-title: clamp(48px, 6.1vw, 88px);
+}
+body.editorial { font-size: var(--type-body); }
+.editorial .page-hero { padding-top: clamp(58px, 7vw, 88px); padding-bottom: clamp(34px, 4vw, 54px); }
+.editorial .page-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: var(--type-page-title);
+  font-weight: 500;
+  line-height: .94;
+  letter-spacing: -.045em;
+  margin: 18px 0 22px;
+}
+.editorial .section h2,
+.editorial .content h2,
+.editorial .cta-band h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: var(--type-h2);
+  font-weight: 500;
+  line-height: 1.02;
+}
+.editorial .page-hero .intro,
+.editorial .intro,
+.editorial .body-copy,
+.editorial .section-head p,
+.editorial .service-item p,
+.editorial .card-body p,
+.editorial .faq p {
+  font-size: 14px;
+  line-height: 1.85;
+}
+.editorial .eyebrow,
+.editorial .tag { font-size: var(--type-label); }
+.editorial .nav { font-size: var(--type-nav); }
+.editorial .button { font-size: 12px; letter-spacing: .035em; }
+.editorial .image-caption,
+.editorial .note { font-size: 11px; line-height: 1.6; }
+.editorial .card-body h3,
+.editorial .services-list .service-item h3 { font-size: 25px; line-height: 1.12; }
+.editorial .process-item h3 { font-size: 21px; line-height: 1.2; }
+.editorial .faq summary { font-size: 20px; line-height: 1.35; }
+
+/* Chinese pages use a dedicated CJK type scale to avoid oversized or cramped glyphs. */
+html[lang^="zh"] body.editorial,
+html[lang^="zh"] .editorial button,
+html[lang^="zh"] .editorial input,
+html[lang^="zh"] .editorial select,
+html[lang^="zh"] .editorial textarea {
+  font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  font-size: 15px;
+  line-height: 1.9;
+  letter-spacing: .015em;
+}
+html[lang^="zh"] .editorial .brand,
+html[lang^="zh"] .editorial .nav,
+html[lang^="zh"] .editorial .button,
+html[lang^="zh"] .editorial .topline,
+html[lang^="zh"] .editorial .footer-nav,
+html[lang^="zh"] .editorial .eyebrow,
+html[lang^="zh"] .editorial .tag {
+  font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  letter-spacing: .04em;
+}
+html[lang^="zh"] .editorial .hero h1,
+html[lang^="zh"] .editorial .page-hero h1,
+html[lang^="zh"] .editorial .section h2,
+html[lang^="zh"] .editorial .content h2,
+html[lang^="zh"] .editorial .cta-band h2,
+html[lang^="zh"] .editorial .lead,
+html[lang^="zh"] .editorial .big-copy,
+html[lang^="zh"] .editorial .card-body h3,
+html[lang^="zh"] .editorial .service-item h3,
+html[lang^="zh"] .editorial .process-item h3,
+html[lang^="zh"] .editorial .faq summary {
+  font-family: 'Noto Serif SC', 'Songti SC', serif;
+  font-weight: 500;
+  letter-spacing: .005em;
+}
+html[lang^="zh"] .editorial .hero h1 { font-size: clamp(42px, 6.6vw, 76px); line-height: 1.12; }
+html[lang^="zh"] .editorial .page-hero h1 { font-size: clamp(38px, 5.2vw, 66px); line-height: 1.18; }
+html[lang^="zh"] .editorial .section h2,
+html[lang^="zh"] .editorial .content h2,
+html[lang^="zh"] .editorial .cta-band h2 { font-size: clamp(30px, 4vw, 48px); line-height: 1.25; }
+html[lang^="zh"] .editorial .lead,
+html[lang^="zh"] .editorial .big-copy { font-size: clamp(20px, 2.4vw, 27px); line-height: 1.55; }
+html[lang^="zh"] .editorial .intro,
+html[lang^="zh"] .editorial .body-copy,
+html[lang^="zh"] .editorial .page-hero .intro,
+html[lang^="zh"] .editorial .section-head p,
+html[lang^="zh"] .editorial .service-item p,
+html[lang^="zh"] .editorial .card-body p,
+html[lang^="zh"] .editorial .faq p { font-size: 14px; line-height: 1.95; }
+html[lang^="zh"] .editorial .card-body h3,
+html[lang^="zh"] .editorial .services-list .service-item h3 { font-size: 21px; line-height: 1.45; }
+html[lang^="zh"] .editorial .nav { font-size: 13px; }
+html[lang^="zh"] .editorial .button { font-size: 12px; }
+@media (max-width: 800px) {
+  .editorial .page-hero { padding-top: 46px; }
+  .editorial .page-hero h1 { font-size: clamp(44px, 10vw, 68px); }
+  html[lang^="zh"] .editorial .page-hero h1 { font-size: clamp(34px, 8vw, 52px); }
+}
+@media (max-width: 520px) {
+  .editorial { --type-body: 14.5px; }
+  .editorial .page-hero h1 { font-size: clamp(42px, 12vw, 58px); }
+  .editorial .section h2,
+  .editorial .content h2 { font-size: clamp(34px, 10vw, 44px); }
+  html[lang^="zh"] .editorial .hero h1 { font-size: clamp(34px, 10vw, 46px); }
+  html[lang^="zh"] .editorial .page-hero h1 { font-size: clamp(30px, 9vw, 42px); }
+  html[lang^="zh"] .editorial .section h2,
+  html[lang^="zh"] .editorial .content h2 { font-size: clamp(27px, 8vw, 36px); }
+}
