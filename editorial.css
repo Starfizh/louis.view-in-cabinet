@@ -284,3 +284,54 @@ body.editorial {
   .editorial .section h2,
   .editorial .content h2 { font-size: clamp(2.4rem, 11vw, 3.4rem); }
 }
+
+
+/* Final cross-page alignment: restrained type scale, consistent card rhythm, reliable image crops. */
+.editorial .hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(4.1rem, 8vw, 7.25rem);
+  line-height: .86;
+  letter-spacing: -.048em;
+  font-kerning: normal;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+.editorial .page-hero h1 {
+  font-size: clamp(3.25rem, 6.6vw, 6.1rem);
+  line-height: .98;
+  letter-spacing: -.042em;
+  max-width: 900px;
+}
+.editorial .image-frame { overflow: hidden; }
+.editorial .hero-image { object-position: center 52%; }
+.editorial .portfolio-grid .image-card img,
+.editorial .cards .image-card img {
+  aspect-ratio: 5 / 4;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.editorial .portfolio-grid .image-card:nth-child(1) img { object-position: center 55%; }
+.editorial .portfolio-grid .image-card:nth-child(2) img { object-position: center 50%; }
+.editorial .portfolio-grid .image-card:nth-child(3) img { object-position: center 48%; }
+.editorial .portfolio-grid .image-card:nth-child(4) img { object-position: center 52%; }
+.editorial .portfolio-grid .image-card:nth-child(5) img { object-position: center 50%; }
+.editorial .portfolio-grid .image-card:nth-child(6) img { object-position: center 50%; }
+.editorial .portfolio-grid .card-body { min-height: 150px; }
+.editorial .service-item .service-image { width: 100%; object-fit: cover; margin-bottom: 18px; }
+.editorial .section-head h2 { max-width: 680px; }
+.editorial .nav a, .editorial .footer-nav a { white-space: nowrap; }
+html[lang^="zh"] .editorial .hero h1 { font-family: 'Cormorant Garamond', 'Noto Serif SC', serif; }
+html[lang^="zh"] .editorial .page-hero h1 { font-family: 'Noto Serif SC', 'Songti SC', serif; font-weight: 500; letter-spacing: -.025em; }
+html[lang^="zh"] .editorial .section h2,
+html[lang^="zh"] .editorial .content h2 { letter-spacing: -.02em; }
+@media (max-width: 800px) {
+  .editorial .hero h1 { font-size: clamp(3.8rem, 13vw, 6.2rem); white-space: normal; }
+  .editorial .hero-grid { grid-template-columns: 1fr; }
+  .editorial .image-frame { aspect-ratio: 5 / 4; }
+}
+@media (max-width: 520px) {
+  .editorial .hero h1 { font-size: clamp(3.35rem, 15vw, 4.8rem); }
+  .editorial .page-hero h1 { font-size: clamp(2.9rem, 12vw, 4.2rem); }
+  .editorial .card-body { padding: 16px 16px 20px; }
+}
