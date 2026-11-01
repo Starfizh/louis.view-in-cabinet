@@ -1,28 +1,12 @@
-(function(){
- const toggle=document.querySelector('.nav-toggle');
- const nav=document.querySelector('.nav');
- if(toggle&&nav){toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});}
- const back=document.querySelector('.back-top');
- if(back){const update=()=>back.classList.toggle('show',window.scrollY>500);window.addEventListener('scroll',update,{passive:true});update();back.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));}
- document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{
-   const filter=btn.dataset.filter;
-   document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b===btn));
-   document.querySelectorAll('[data-category]').forEach(card=>{card.hidden=filter!=='all'&&card.dataset.category!==filter;});
- }));
- const form=document.querySelector('#project-form');
- if(form){form.addEventListener('submit',e=>{
-   e.preventDefault();
-   const data=new FormData(form);
-   const get=k=>(data.get(k)||'').toString().trim();
-   if(!get('name')||!get('location')||!get('service')){alert('Please complete the required fields.');return;}
-   const lines=[
-    'Hello Louis, I would like to discuss a cabinetry project.',
-    'Name: '+get('name'),'Project location: '+get('location'),
-    'Service: '+get('service'),'Project stage: '+get('stage'),
-    'Preferred completion: '+get('month'),'Budget: '+get('budget'),
-    'Property type: '+get('property'),'Details: '+get('details')
-   ].filter(Boolean);
-   const url='https://wa.me/60168328653?text='+encodeURIComponent(lines.join('\n'));
-   window.open(url,'_blank','noopener');
- });}
-})();
+const zh=document.documentElement.lang==='zh-Hans';
+const themeButtons=document.querySelectorAll('.themes button');
+function selectTheme(theme){document.documentElement.dataset.theme=theme;themeButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.theme===theme)));try{localStorage.setItem('louis-theme',theme)}catch(e){}}
+selectTheme(document.documentElement.dataset.theme||'sage');themeButtons.forEach(b=>b.addEventListener('click',()=>selectTheme(b.dataset.theme)));
+const toggle=document.getElementById('menu-toggle'),menu=document.getElementById('mobile-menu'),close=document.getElementById('menu-close');let lastFocus;
+function setMenu(open){if(open)lastFocus=document.activeElement;menu.classList.toggle('open',open);menu.inert=!open;menu.setAttribute('aria-hidden',String(!open));toggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open);document.getElementById('main').inert=open;document.querySelector('footer').inert=open;if(open)close.focus();else if(lastFocus)lastFocus.focus()}
+toggle.addEventListener('click',()=>setMenu(true));close.addEventListener('click',()=>setMenu(false));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.classList.contains('open'))setMenu(false);if(e.key==='Tab'&&menu.classList.contains('open')){const els=[...menu.querySelectorAll('a,button')];const first=els[0],last=els[els.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});window.addEventListener('resize',()=>{if(innerWidth>1024&&menu.classList.contains('open'))setMenu(false)});
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>e.target.classList.toggle('in-view',e.isIntersecting))},{threshold:.07});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
+const topButton=document.getElementById('back-top');function checkScroll(){topButton.classList.toggle('visible',window.scrollY>250);topButton.inert=window.scrollY<=250}window.addEventListener('scroll',checkScroll,{passive:true});checkScroll();topButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));
+const filters=document.querySelectorAll('[data-filter]');filters.forEach(b=>b.addEventListener('click',()=>{filters.forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b))});document.querySelectorAll('.project').forEach(p=>{p.hidden=b.dataset.filter!=='all'&&p.dataset.category!==b.dataset.filter})}));
+const dialog=document.getElementById('image-dialog');document.querySelectorAll('.project').forEach(p=>p.addEventListener('click',()=>{dialog.querySelector('img').src='/louis.view-in-cabinet.github.io/assets/'+p.dataset.image+'.jpg';dialog.querySelector('img').alt=p.dataset.title;dialog.querySelector('h2').textContent=p.dataset.title;dialog.showModal()}));document.getElementById('dialog-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
+const form=document.getElementById('enquiry-form');if(form){const service=document.getElementById('service'),stage=document.getElementById('stage'),other=document.getElementById('other-service');service.addEventListener('change',()=>{const visible=service.value==='Other';document.getElementById('other-wrap').hidden=!visible;other.required=visible;other.disabled=!visible});other.disabled=true;stage.addEventListener('change',()=>{document.getElementById('date-wrap').hidden=stage.value!=='renovating'});form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const d=new FormData(form);const labels=zh?['姓名','项目所在地','设计服务','项目进度','希望完成月份','预算','房屋类型','想法']:['Name','Project location','Service','Project stage','Preferred completion','Budget','Property type','Ideas'];const selectedText=service.selectedOptions[0].textContent;const stageText=stage.selectedOptions[0].textContent;const values=[d.get('name'),d.get('location'),service.value==='Other'?d.get('other'):selectedText,stageText,stage.value==='renovating'?d.get('month'):'',d.get('budget'),d.get('property'),d.get('message')];const msg=(zh?'你好 Louis，我想咨询橱柜设计。':'Hi Louis, I’d like to discuss a cabinet design project.')+'\n\n'+values.map((v,i)=>v?labels[i]+': '+v:'').filter(Boolean).join('\n');const href='https://wa.me/60168328653?text='+encodeURIComponent(msg);const win=window.open(href,'_blank','noopener');const status=document.getElementById('form-status');status.textContent=zh?'请在 WhatsApp 中检查并发送信息。':'Review and send your enquiry in WhatsApp.';const a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';a.className='text-link';a.textContent=zh?'再次打开 WhatsApp ↗':'Open WhatsApp again ↗';status.append(document.createElement('br'),a)})}
