@@ -1,7 +1,7 @@
 # Louis Ong bilingual cabinet-design website
 
 Static HTML/CSS/JS site for GitHub Pages project site:
-`https://starfizh.github.io/louis.view-in-cabinet.github.io/`
+`https://starfizh.github.io/louis.view-in-cabinet/`
 
 ## Pages
 - `/` English home
@@ -18,7 +18,7 @@ Static HTML/CSS/JS site for GitHub Pages project site:
 - Clarified the contact details field and retained WhatsApp prefill behavior.
 
 ## Publish
-Upload the contents of this ZIP into the root of the repository `starfizh/louis.view-in-cabinet.github.io`, replacing corresponding files. Keep `index.html` at repository root. Then commit changes and allow GitHub Pages to rebuild.
+Upload the contents of this ZIP into the root of the repository `starfizh/louis.view-in-cabinet`, replacing corresponding files. Keep `index.html` at repository root. Then commit changes and allow GitHub Pages to rebuild.
 
 ## Notes
 - Image URLs are temporary Unsplash design references, not claims of completed projects. Replace them with approved project photography when available.
